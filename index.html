@@ -1,1 +1,620 @@
-<p>Hello World</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruthav Sadali - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: #ffd700;
+        }
+
+        main {
+            margin-top: 80px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 100px 0;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-info a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .section {
+            background: white;
+            margin: 2rem 0;
+            border-radius: 15px;
+            padding: 3rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transform: translateY(20px);
+            opacity: 0;
+            animation: slideInUp 0.8s ease forwards;
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #4a5568;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 2px;
+        }
+
+        .education-item, .experience-item {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .education-item:hover, .experience-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .item-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #2d3748;
+        }
+
+        .item-company {
+            font-size: 1.1rem;
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        .item-date {
+            color: #718096;
+            font-style: italic;
+            white-space: nowrap;
+        }
+
+        .item-description ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .item-description li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .item-description li::before {
+            content: '▶';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-top: 4px solid #667eea;
+        }
+
+        .skill-category h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #2d3748;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 12px;
+            border-top: 4px solid #667eea;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: #2d3748;
+        }
+
+        .certifications-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .certification-item {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .cert-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .item-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .section {
+                padding: 2rem 1rem;
+            }
+        }
+
+        .section:nth-child(2) { animation-delay: 0.1s; }
+        .section:nth-child(3) { animation-delay: 0.2s; }
+        .section:nth-child(4) { animation-delay: 0.3s; }
+        .section:nth-child(5) { animation-delay: 0.4s; }
+        .section:nth-child(6) { animation-delay: 0.5s; }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">Ruthav Sadali</a>
+            <ul class="nav-links">
+                <li><a href="#education">Education</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Ruthav Sadali</h1>
+                <p>Electronic Systems Engineering Technology Student</p>
+                <div class="contact-info">
+                    <a href="tel:+12817055128">📞 +1 (281) 705-5128</a>
+                    <a href="mailto:sadali.ruthav.bus@gmail.com">✉️ sadali.ruthav.bus@gmail.com</a>
+                    <a href="https://linkedin.com/in/ruthav-sadali" target="_blank">🔗 LinkedIn</a>
+                </div>
+            </div>
+        </section>
+
+        <div class="container">
+            <section id="education" class="section">
+                <h2>Education</h2>
+                <div class="education-item">
+                    <div class="item-header">
+                        <div>
+                            <div class="item-title">Bachelor of Science, Electronic Systems Engineering Technology</div>
+                            <div class="item-company">Texas A&M University</div>
+                        </div>
+                        <div class="item-date">August 2022 - May 2026</div>
+                    </div>
+                    <p>College Station, TX</p>
+                </div>
+            </section>
+
+            <section id="experience" class="section">
+                <h2>Experience</h2>
+                
+                <div class="experience-item">
+                    <div class="item-header">
+                        <div>
+                            <div class="item-title">Firmware Technician Intern</div>
+                            <div class="item-company">SwIRL</div>
+                        </div>
+                        <div class="item-date">June 2025 - Present</div>
+                    </div>
+                    <div class="item-description">
+                        <ul>
+                            <li>Utilized systematic troubleshooting on AI testing rig to remediate malfunction, restoring system functionality</li>
+                            <li>Performed a clean installation of Linux operating system on custom hardware to support AI workloads</li>
+                            <li>Set up the required AI libraries such as TensorFlow, PyTorch, and Scikit-learn for model development</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="item-header">
+                        <div>
+                            <div class="item-title">Automation Intern</div>
+                            <div class="item-company">ABJ Chapman Services</div>
+                        </div>
+                        <div class="item-date">May 2025 - Present</div>
+                    </div>
+                    <div class="item-description">
+                        <ul>
+                            <li>Automated the order-to-invoice workflow through use of Python and Square APIs to reduce manual processing time</li>
+                            <li>Designed and integrated error handling to ensure fault tolerance and maintain continuous system uptime</li>
+                            <li>Redesigned customer search algorithm, reducing recall times by approximately 19%</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="item-header">
+                        <div>
+                            <div class="item-title">Software/Business Analyst Intern</div>
+                            <div class="item-company">Vetsweb</div>
+                        </div>
+                        <div class="item-date">June 2024 – August 2024</div>
+                    </div>
+                    <div class="item-description">
+                        <ul>
+                            <li>Utilized Search Engine Optimization (SEO) to enhance client website visibility, increasing click rate by 22%</li>
+                            <li>Awarded "Top Growing Pages" by Google Search Console</li>
+                            <li>Led an offshore team over 2 different time zones to deliver client requirements, reducing bug count by 17%</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="skills" class="section">
+                <h2>Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3>Programming Languages</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">ARM Assembly</span>
+                            <span class="skill-tag">C</span>
+                            <span class="skill-tag">C++</span>
+                            <span class="skill-tag">Java</span>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">SQL</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Web Technologies</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">HTML</span>
+                            <span class="skill-tag">CSS</span>
+                            <span class="skill-tag">Node.js</span>
+                            <span class="skill-tag">Electron.js</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Software & Tools</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Windows</span>
+                            <span class="skill-tag">macOS</span>
+                            <span class="skill-tag">Linux</span>
+                            <span class="skill-tag">Quartus</span>
+                            <span class="skill-tag">Wireshark</span>
+                            <span class="skill-tag">Cisco Packet Tracer</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>AI/ML Libraries</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">TensorFlow</span>
+                            <span class="skill-tag">PyTorch</span>
+                            <span class="skill-tag">Scikit-learn</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="projects" class="section">
+                <h2>Projects</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <h3>Cancer Tumor Detection Algorithm</h3>
+                        <div class="item-description">
+                            <ul>
+                                <li>Designed and implemented a machine learning algorithm to classify cancer tumors</li>
+                                <li>Utilized scikit-learn and TensorFlow in Python to create dataset and test-set and train the algorithm</li>
+                                <li>Increased number of epochs to increase accuracy by 10%</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <h3>UDP Server and Client Systems</h3>
+                        <div class="item-description">
+                            <ul>
+                                <li>Developed UDP client and server applications to facilitate real-time data transmission</li>
+                                <li>Utilized packet sniffers to troubleshoot, diagnose, and resolve server issues, reducing downtime</li>
+                                <li>Applied socket programming to ensure proper connection between server and client</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <h3>STP Network Simulation</h3>
+                        <div class="item-description">
+                            <ul>
+                                <li>Simulated network consisting of multiple switches to demonstrate IEEE 802.1D Spanning Tree Protocol</li>
+                                <li>Analyzed the roles of the switches, port states, and route costs to determine root bridge selection</li>
+                                <li>Configured HTTP and DNS servers to simulate web connectivity</li>
+                                <li>Simulated route failure to observe STP convergence</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="certifications" class="section">
+                <h2>Certifications</h2>
+                <div class="certifications-list">
+                    <div class="certification-item">
+                        <div class="cert-icon">IBM</div>
+                        <div>
+                            <strong>IBM Cybersecurity Analyst</strong> <em>(In Progress)</em>
+                        </div>
+                    </div>
+                    <div class="certification-item">
+                        <div class="cert-icon">LSS</div>
+                        <div>
+                            <strong>Lean Six Sigma Yellow Belt</strong><br>
+                            <small>Demonstrated foundational knowledge in enhancing process efficiency and reducing waste</small>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Ruthav Sadali. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Header background change on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.querySelector('.logo').style.color = '#333';
+                header.querySelectorAll('.nav-links a').forEach(link => {
+                    link.style.color = '#333';
+                });
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.1)';
+                header.querySelector('.logo').style.color = 'white';
+                header.querySelectorAll('.nav-links a').forEach(link => {
+                    link.style.color = 'white';
+                });
+            }
+        });
+
+        // Intersection Observer for section animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
